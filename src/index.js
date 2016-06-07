@@ -3,10 +3,9 @@ function parseStyles(styles) {
   const directionX = ['left', 'right'];
   const directionY = ['top', 'bottom'];
   const result = {};
-
-  
 }
 
 export default function ReactNativeShorthand(styles = {}) {
-  return parseStyles(styles);
+  return 'testing';
+  // return parseStyles(styles);
 }
