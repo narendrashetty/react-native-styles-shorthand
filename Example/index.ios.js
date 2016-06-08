@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import shorthand from './test';
+import shorthand from 'react-native-styles-shorthand';
 
 class Example extends Component {
   render() {
