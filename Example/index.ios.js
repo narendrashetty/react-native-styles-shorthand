@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import shorthand from 'react-native-styles-shorthand';
+import shorthand from './test';
 
 class Example extends Component {
   render() {
@@ -22,7 +22,7 @@ class Example extends Component {
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          {shorthand()}
+          Instructions
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
@@ -33,7 +33,7 @@ class Example extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create(shorthand({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: '100',
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
   },
-});
+}));
 
 AppRegistry.registerComponent('Example', () => Example);
