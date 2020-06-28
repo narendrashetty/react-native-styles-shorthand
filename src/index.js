@@ -44,7 +44,11 @@ function generateBorderStyle(rule, value) {
 
   for (value of values) {
     if (borderTypes.includes(value)) {
+<<<<<<< HEAD
       // borderStyle dotted or dashed without a borderRadius doesn't work on android.
+=======
+      // borderStyle dotted or dashed without a borderRadius doesn't work.
+>>>>>>> 610558be3fee97272a564341593c29cbed949de5
       // Issue reported on https://github.com/facebook/react-native/issues/18285 (and ignore by FB)
       if (!hasBorderRadius && (value !== 'solid')) {
         result['borderRadius'] = 1;
