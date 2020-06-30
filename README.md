@@ -30,7 +30,7 @@ const styles = StyleSheet.create(shorthand({
 ## TODO
 - [x] support `margin`
 - [x] support `padding`
-- [ ] support `border`
+- [x] support `border`
 - [ ] support `box-shadow`
 - [ ] support `background`
 - [ ] support for individual class styles
