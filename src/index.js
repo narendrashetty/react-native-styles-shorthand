@@ -2,39 +2,22 @@ let hasBorderRadius = false;
 
 function expandValues(rule, value) {
   let outputRule = {};
-  const values = value.split(' ');
+  let values = value.split(' ');
 
-  if (values.length === 1) {
-    return {
-      [rule]: parseInt(values[0], 10)
-    }
-  }
+  // Lets always generate the three rules
+  values = values.length === 1 ? [values[0], values[0], values[0], values[0]]
+    : values.length === 2 ? [values[0], values[1], values[0], values[1]]
+    : values.length === 3 ? [values[0], values[1], values[2], values[1]]
+    : values.length === 4 ? values : 0;
 
   outputRule = {
-    [`${rule}Top`]: parseInt(values[0], 10),
-    [`${rule}Right`]: parseInt(values[1], 10),
+    [`${rule}Top`]:    parseInt(values[0], 10),
+    [`${rule}Right`]:  parseInt(values[1], 10),
+    [`${rule}Bottom`]: parseInt(values[2], 10),
+    [`${rule}Left`]:   parseInt(values[3], 10)
   }
 
-  switch(values.length) {
-    case 2:
-      return {
-        ...outputRule,
-        [`${rule}Bottom`]: parseInt(values[0], 10),
-        [`${rule}Left`]: parseInt(values[1], 10)
-      };
-    case 3:
-      return {
-        ...outputRule,
-        [`${rule}Bottom`]: parseInt(values[2], 10),
-        [`${rule}Left`]: parseInt(values[1], 10)
-      };
-    case 4:
-      return {
-        ...outputRule,
-        [`${rule}Bottom`]: parseInt(values[2], 10),
-        [`${rule}Left`]: parseInt(values[3], 10)
-      };
-  }
+  return outputRule;
 }
 
 function generateBorderStyle(rule, value) {
@@ -44,7 +27,7 @@ function generateBorderStyle(rule, value) {
 
   for (value of values) {
     if (borderTypes.includes(value)) {
-      // borderStyle dotted or dashed without a borderRadius doesn't work on android.
+      // borderStyle dotted or dashed without a borderRadius doesn't work.
       // Issue reported on https://github.com/facebook/react-native/issues/18285 (and ignore by FB)
       if (!hasBorderRadius && (value !== 'solid')) {
         result['borderRadius'] = 1;
@@ -86,6 +69,7 @@ function parseStyles(selectors) {
   for (let selector in selectors) {
     let rules = selectors[selector];
     result[selector] = result[selector] || {};
+    console.log(`** ${JSON.stringify(rules)}`)
     hasBorderRadius = Object.keys(rules).includes('borderRadius');
     for (let rule in rules) {
       if (supportedShorthand.includes(rule)) {
