@@ -69,7 +69,6 @@ function parseStyles(selectors) {
   for (let selector in selectors) {
     let rules = selectors[selector];
     result[selector] = result[selector] || {};
-    console.log(`** ${JSON.stringify(rules)}`)
     hasBorderRadius = Object.keys(rules).includes('borderRadius');
     for (let rule in rules) {
       if (supportedShorthand.includes(rule)) {
